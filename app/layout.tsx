@@ -1,4 +1,6 @@
 import { TailwindIndicator } from "@/components/TailwindIndicator";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import { SiteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -20,9 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className={cn("bg-background antialiased", inter.className)}>
+      <body
+        className={cn(
+          "bg-background antialiased flex flex-col min-h-screen",
+          inter.className
+        )}
+      >
         <Providers>
-          {children}
+          <Header />
+          <main className="flex-1 ">{children}</main>
+          <Footer />
           <TailwindIndicator />
         </Providers>
       </body>

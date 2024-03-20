@@ -44,6 +44,9 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
+  sonner:
+    specifier: ^1.4.32
+    version: 1.4.32(react-dom@18.2.0)(react@18.2.0)
   tailwind-merge:
     specifier: ^2.2.2
     version: 2.2.2
@@ -2745,6 +2748,16 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /sonner@1.4.32(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-MYdvJgx2wM8a7fnzZr7KWZJY2ukSoqh7fsshZYEVljTSuJKNesMgfQ95+kyduGh6t500wxvLm6jjffxB4M58ZA==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}

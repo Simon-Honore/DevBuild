@@ -9,7 +9,7 @@ import type { Adapter } from "next-auth/adapters";
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
   theme: {
-    // logo: SiteConfig.logo,
+    logo: "/images/logos/devbuild-logo-text.png",
   },
   providers: [
     GithubProvider({

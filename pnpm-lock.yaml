@@ -20,6 +20,9 @@ dependencies:
   '@t3-oss/env-nextjs':
     specifier: ^0.9.2
     version: 0.9.2(typescript@5.4.2)(zod@3.22.4)
+  '@tanstack/react-query':
+    specifier: ^5.28.4
+    version: 5.28.4(react@18.2.0)
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
@@ -469,6 +472,19 @@ packages:
       '@t3-oss/env-core': 0.9.2(typescript@5.4.2)(zod@3.22.4)
       typescript: 5.4.2
       zod: 3.22.4
+    dev: false
+
+  /@tanstack/query-core@5.28.4:
+    resolution: {integrity: sha512-uQZqOFqLWUvXNIQZ63XdKzg22NtHzgCBUfDmjDHi3BoF+nUYeBNvMi/xFPtFrMhqRzG2Ir4mYaGsWZzmiEjXpA==}
+    dev: false
+
+  /@tanstack/react-query@5.28.4(react@18.2.0):
+    resolution: {integrity: sha512-BErcoB/QQG6YwLSUKnaGxF+lSc270RH2w3kMBpG0i4YzDCsFs2pdxPX1WVknQvFk9bNgukMb158hc2Zb4SdwSA==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.28.4
+      react: 18.2.0
     dev: false
 
   /@types/cookie@0.6.0:

@@ -28,7 +28,7 @@ const typographyVariants = cva("", {
       base: "",
       quote: "mt-6 border-l-2 pl-6 italic",
       code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
-      lead: "text-xl text-muted-foreground",
+      lead: " font-semibold uppercase text-muted-foreground",
       large: "text-lg font-semibold",
       small: "text-sm font-medium leading-none",
       muted: "text-sm text-muted-foreground",
@@ -61,6 +61,7 @@ const defaultElementMapping: Record<
   muted: "p",
   link: "a",
   base: "p",
+  extraSmall: "p",
 } as const;
 
 export function Typography<E extends ElementType = typeof defaultElement>({

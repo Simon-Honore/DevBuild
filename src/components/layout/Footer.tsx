@@ -7,7 +7,7 @@ import { Typography } from "../ui/Typography";
 // TODO: faire section CONTACT avec formulaire de contact dans la page de présentation
 // TODO: faire section liste des pages
 
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className="container flex flex-col gap-6 border-t p-6 text-muted-foreground">
       <div className="flex items-center justify-center ">
@@ -48,4 +48,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};

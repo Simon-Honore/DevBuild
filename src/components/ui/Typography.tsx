@@ -21,18 +21,19 @@ type PolymorphicProps<E extends ElementType> = PropsWithChildren<
 const typographyVariants = cva("", {
   variants: {
     variant: {
-      h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl font-caption",
-      h2: "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 font-caption",
-      h3: "scroll-m-20 text-xl font-semibold tracking-tight font-caption",
+      h1: "font-caption scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
+      h2: "font-caption scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0",
+      h3: "scroll-m-4 text-xl font-semibold uppercase",
       p: "leading-7 [&:not(:first-child)]:mt-6",
       base: "",
       quote: "mt-6 border-l-2 pl-6 italic",
       code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
-      lead: "text-xl text-muted-foreground",
+      lead: " font-semibold uppercase text-muted-foreground",
       large: "text-lg font-semibold",
       small: "text-sm font-medium leading-none",
       muted: "text-sm text-muted-foreground",
-      link: "text-indigo-500 font-medium hover:underline",
+      link: "font-medium text-primary hover:brightness-75 dark:hover:brightness-125",
+      extraSmall: "text-xs font-medium leading-none",
     },
   },
   defaultVariants: {
@@ -60,6 +61,7 @@ const defaultElementMapping: Record<
   muted: "p",
   link: "a",
   base: "p",
+  extraSmall: "p",
 } as const;
 
 export function Typography<E extends ElementType = typeof defaultElement>({

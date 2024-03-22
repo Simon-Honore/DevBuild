@@ -21,8 +21,6 @@ export const PaginationNav = ({
 }: PaginationNavProps) => {
   const router = useRouter();
 
-  console.log({ totalPages, pageActive });
-
   return (
     <div className={cn("flex items-center gap-3 md:gap-4", className)}>
       {/* Previous */}

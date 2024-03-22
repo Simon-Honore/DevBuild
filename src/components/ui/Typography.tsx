@@ -21,8 +21,8 @@ type PolymorphicProps<E extends ElementType> = PropsWithChildren<
 const typographyVariants = cva("", {
   variants: {
     variant: {
-      h1: "font-caption scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
-      h2: "font-caption scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0",
+      h1: " scroll-m-20 text-2xl font-extrabold uppercase tracking-tight lg:text-4xl",
+      h2: " scroll-m-20 text-xl font-semibold tracking-tight lg:text-2xl",
       h3: "scroll-m-4 text-xl font-semibold uppercase",
       p: "leading-7 [&:not(:first-child)]:mt-6",
       base: "",

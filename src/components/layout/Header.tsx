@@ -1,19 +1,6 @@
 import { AuthHeader } from "@/features/auth/AuthHeader";
-import { LoggedInButton } from "@/features/auth/LoggedInButton";
-import { LoginButton } from "@/features/auth/LoginButton";
-import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Typography } from "../ui/Typography";
-import { Avatar } from "../ui/avatar";
-import { Button } from "../ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
 
 export const Header = () => {
   return (

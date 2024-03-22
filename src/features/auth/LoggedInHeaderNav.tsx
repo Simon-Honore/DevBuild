@@ -76,7 +76,7 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
 const CoursesNav = () => {
   return (
     <>
-      <Typography variant={"link"} as={Link} href={"#"}>
+      <Typography variant={"link"} as={Link} href={"/courses"}>
         Explorer les cours
       </Typography>
       <Typography variant={"link"} as={Link} href={"#"}>

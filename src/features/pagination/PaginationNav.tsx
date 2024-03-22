@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useRouter } from "next/navigation";
@@ -9,19 +10,21 @@ export type PaginationNavProps = {
   totalPages: number;
   pageActive: number;
   baseURL: string;
+  className?: string;
 };
 
 export const PaginationNav = ({
   totalPages,
   pageActive,
   baseURL,
+  className,
 }: PaginationNavProps) => {
   const router = useRouter();
 
   console.log({ totalPages, pageActive });
 
   return (
-    <div className="flex items-center gap-4">
+    <div className={cn("flex items-center gap-3 md:gap-4", className)}>
       {/* Previous */}
       <Button
         variant={"ghost"}

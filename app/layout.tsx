@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <Providers>
           <Header />
-          <main className="container flex-1  pb-10 pt-6">{children}</main>
+          <main className="flex-1  pb-10">{children}</main>
           <Footer />
           <TailwindIndicator />
         </Providers>

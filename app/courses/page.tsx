@@ -29,12 +29,12 @@ export default async function CoursesPage({
   return (
     <Layout>
       <LayoutHeader>
-        <LayoutTitle>Explorer les cours</LayoutTitle>
+        <LayoutTitle className="uppercase">Explorer les cours</LayoutTitle>
       </LayoutHeader>
 
       <LayoutContent className="flex flex-col gap-6">
         {courses.data.map((course) => (
-          <Link href={`/course/${course.id}`} key={course.id}>
+          <Link href={`/courses/${course.id}`} key={course.id}>
             <CourseCard course={course} />
           </Link>
         ))}

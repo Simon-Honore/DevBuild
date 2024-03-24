@@ -12,3 +12,14 @@ export const capitalizeFirstChar = (string: string) => {
   const stringWithoutFirstChar = string.slice(1);
   return firstCharCapitalize + stringWithoutFirstChar;
 };
+
+export const DateLongFormat = (date: Date) => {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  } as const;
+
+  return date.toLocaleDateString("fr-FR", options);
+};

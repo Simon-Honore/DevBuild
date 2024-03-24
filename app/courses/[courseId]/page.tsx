@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LoginButton } from "@/features/auth/LoginButton";
 import { getOneCourse } from "@/features/courses/courses.query";
-import { getAuthSession } from "@/lib/auth";
+import { getAuthSession, getRequiredAuthSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { DateLongFormat, capitalizeFirstChar } from "@/lib/utils";
 import { PenLine } from "lucide-react";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { notFound, redirect } from "next/navigation";
 
 export default async function CoursePresentationPage({
   params,
@@ -44,9 +45,50 @@ export default async function CoursePresentationPage({
 
               <div className="md:px-10">
                 {session ? (
-                  <Link href={`/joined-courses/${params.courseId}`}>
-                    <Button>Rejoindre le cours</Button>
-                  </Link>
+                  <form>
+                    <Button
+                      formAction={async () => {
+                        "use server";
+
+                        const session = await getRequiredAuthSession();
+
+                        const courseOnUser = await prisma.courseOnUser.create({
+                          data: {
+                            courseId: course.id,
+                            userId: session.user.id,
+                          },
+                          select: {
+                            course: {
+                              select: {
+                                id: true,
+                                lessons: {
+                                  where: {
+                                    state: "PUBLISHED",
+                                  },
+                                  take: 1,
+                                  select: {
+                                    id: true,
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        });
+
+                        const lesson = courseOnUser.course.lessons[0];
+
+                        revalidatePath(`/courses/${course.id}`);
+
+                        if (lesson) {
+                          redirect(
+                            `/joined-courses/${course.id}/lessons/${lesson.id}`
+                          );
+                        }
+                      }}
+                    >
+                      rejoindre le cours
+                    </Button>
+                  </form>
                 ) : (
                   <LoginButton />
                 )}

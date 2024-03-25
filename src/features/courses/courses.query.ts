@@ -57,6 +57,7 @@ export const getOneCourse = async (courseId: string) => {
       state: "PUBLISHED",
     },
     select: {
+      id: true,
       name: true,
       presentation: true,
       image: true,

@@ -79,7 +79,7 @@ const CoursesNav = () => {
       <Typography variant={"link"} as={Link} href={"/courses"}>
         Explorer les cours
       </Typography>
-      <Typography variant={"link"} as={Link} href={"#"}>
+      <Typography variant={"link"} as={Link} href={"/joined-courses"}>
         Cours suivis
       </Typography>
     </>

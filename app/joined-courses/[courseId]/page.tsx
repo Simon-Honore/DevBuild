@@ -2,13 +2,9 @@ import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/button";
 import { CourseHeader } from "@/features/courses/CourseHeader";
 import { CreatorCard } from "@/features/courses/CreatorCard";
-import {
-  LessonInCourseJoined,
-  getOneCourseJoined,
-} from "@/features/courses/joined-courses.query";
+import { getOneCourseJoined } from "@/features/courses/joined-courses.query";
+import { LessonsList } from "@/features/lessons/LessonsList";
 import { getRequiredAuthSession } from "@/lib/auth";
-import { CheckCircle, CircleDot, CircleDotDashed } from "lucide-react";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function JoinedCoursePage({
@@ -27,18 +23,6 @@ export default async function JoinedCoursePage({
     notFound();
   }
 
-  const lessonProgressIcon = (progress: LessonInCourseJoined["progress"]) => {
-    if (progress === "NOT_STARTED") {
-      return <CircleDotDashed className="stroke-muted-foreground" />;
-    }
-
-    if (progress === "IN_PROGRESS") {
-      return <CircleDot className="stroke-sky-600" />;
-    }
-
-    return <CheckCircle className="stroke-emerald-600" />;
-  };
-
   return (
     <div className="flex w-full flex-col">
       <CourseHeader course={course}>
@@ -53,20 +37,7 @@ export default async function JoinedCoursePage({
 
           <div className="flex flex-col gap-2">
             <Typography variant={"h2"}>Leçons</Typography>
-            <ul className="flex flex-col divide-y px-4">
-              {course.lessons.map((lesson) => (
-                <Link
-                  href={"#"}
-                  key={lesson.id}
-                  className="rounded hover:bg-accent"
-                >
-                  <li className="flex items-center gap-2 p-2">
-                    {lessonProgressIcon(lesson.progress)}
-                    <Typography variant={"large"}>{lesson.name}</Typography>
-                  </li>
-                </Link>
-              ))}
-            </ul>
+            <LessonsList course={course} />
           </div>
         </div>
 

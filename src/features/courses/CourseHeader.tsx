@@ -16,7 +16,7 @@ type CourseHeaderProps = {
 export const CourseHeader = async ({
   course,
   children,
-}: PropsWithChildren<CourseHeaderProps>) => {
+}: PropsWithChildren & CourseHeaderProps) => {
   const session = await getRequiredAuthSession();
 
   return (

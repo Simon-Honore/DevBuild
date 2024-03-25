@@ -74,6 +74,7 @@ export const getOneCourseJoined = async ({
           state: true,
           name: true,
           courseId: true,
+          content: true,
           users: {
             where: {
               userId,

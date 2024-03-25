@@ -9,16 +9,9 @@ import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { capitalizeFirstChar } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function CoursesOwnerPage() {
@@ -59,39 +52,29 @@ export default async function CoursesOwnerPage() {
         </Link>
       </LayoutActions>
       <LayoutContent>
-        <Card>
-          <CardContent className="mt-4">
-            <Table>
-              <TableHeader>
-                <TableHead>Image</TableHead>
-                <TableHead>Name</TableHead>
-              </TableHeader>
-              <TableBody>
-                {courses.map((course) => (
-                  <TableRow>
-                    <TableCell>
-                      <Avatar className="rounded">
-                        <AvatarFallback>{course.name[0]}</AvatarFallback>
-                        {course.image && (
-                          <AvatarImage src={course.image} alt={course.name} />
-                        )}
-                      </Avatar>
-                    </TableCell>
-                    <TableCell>
-                      <Typography
-                        as={Link}
-                        variant="large"
-                        href={`/writing-space/my-courses/${course.id}`}
-                      >
-                        {course.name}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+        {courses.map((course) => (
+          <Link key={course.id} href={`/writing-space/my-courses/${course.id}`}>
+            <Card>
+              <CardContent className="flex items-center gap-6 md:items-stretch">
+                <Avatar className="my-auto size-16 rounded-md md:size-24">
+                  <AvatarFallback>{course.name[0]}</AvatarFallback>
+                  {course.image ? (
+                    <AvatarImage src={course.image} alt="image du cours" />
+                  ) : null}
+                </Avatar>
+                <div className="flex grow flex-col gap-2 py-2">
+                  <Typography variant={"h2"}>
+                    {capitalizeFirstChar(course.name)}
+                  </Typography>
+
+                  <Typography className="max-md:hidden">
+                    {course.presentation}
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
       </LayoutContent>
     </Layout>
   );

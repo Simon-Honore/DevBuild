@@ -10,7 +10,6 @@ type LessonsListProps = {
 };
 
 export const LessonsList = ({ course, lessonActive }: LessonsListProps) => {
-  console.log({ lessonActive });
   return (
     <ul className="flex flex-col divide-y px-4">
       {course.lessons.map((lesson) => (

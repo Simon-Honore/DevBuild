@@ -58,13 +58,13 @@ export default async function OwnerCoursePage({
         <div className="flex grow flex-col gap-6">
           <Typography>{course.presentation}</Typography>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <Typography variant={"h2"}>Leçons</Typography>
             <AdminLessonSortable items={course.lessons} />
-            <form>
+            <form className="self-end pt-4 max-md:w-full">
               <SubmitButton
                 size="sm"
-                className="w-full"
+                className=" max-md:w-full"
                 formAction={async () => {
                   "use server";
 

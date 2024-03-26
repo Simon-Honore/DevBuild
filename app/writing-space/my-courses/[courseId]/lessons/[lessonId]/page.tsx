@@ -41,9 +41,9 @@ export default async function CourseLessonsPage({
             size: "sm",
             variant: "secondary",
           })}
-          href={`/admin/courses/${lesson.courseId}/lessons`}
+          href={`/writing-space/my-courses/${lesson.courseId}`}
         >
-          Back
+          Retour
         </Link>
       </LayoutActions>
       <LayoutContent className="flex flex-col gap-4 lg:flex-row">

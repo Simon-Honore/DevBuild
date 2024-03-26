@@ -55,7 +55,11 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
               Espace rédaction
             </Typography>
             <div className="flex flex-col gap-4 border-b pb-4">
-              <Typography variant={"link"} as={Link} href={"#"}>
+              <Typography
+                variant={"link"}
+                as={Link}
+                href={"/writing-space/my-courses"}
+              >
                 Mes cours
               </Typography>
               <Typography variant={"link"} as={Link} href={"#"}>

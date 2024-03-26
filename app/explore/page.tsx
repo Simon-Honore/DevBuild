@@ -4,8 +4,8 @@ import {
   LayoutHeader,
   LayoutTitle,
 } from "@/components/layout/Layout";
-import { CourseCard } from "@/features/courses/CourseCard";
-import { getCoursesExplore } from "@/features/courses/courses.query";
+import { CourseCard } from "@/features/courses/explore/CourseCard";
+import { getAllCourses } from "@/features/courses/explore/courses.query";
 import { PaginationNav } from "@/features/pagination/PaginationNav";
 import { getAuthSession } from "@/lib/auth";
 import Link from "next/link";
@@ -20,7 +20,7 @@ export default async function CoursesPage({
   const page = Number(searchParams.page ?? 1);
   const itemsPerPage = 10;
 
-  const courses = await getCoursesExplore({
+  const courses = await getAllCourses({
     userPage: page,
     itemsPerPage,
     userId: session?.user.id,

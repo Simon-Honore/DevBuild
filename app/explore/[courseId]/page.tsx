@@ -1,9 +1,9 @@
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/button";
 import { LoginButton } from "@/features/auth/LoginButton";
-import { CourseHeader } from "@/features/courses/CourseHeader";
-import { CreatorCard } from "@/features/courses/CreatorCard";
-import { getOneCourse } from "@/features/courses/courses.query";
+import { CourseHeader } from "@/features/courses/explore/CourseHeader";
+import { CreatorCard } from "@/features/courses/explore/CreatorCard";
+import { getOneCourse } from "@/features/courses/explore/courses.query";
 import { getAuthSession, getRequiredAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";

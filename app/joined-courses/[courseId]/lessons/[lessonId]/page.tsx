@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CourseHeader } from "@/features/courses/CourseHeader";
+import { CourseHeader } from "@/features/courses/explore/CourseHeader";
 import { getOneCourseJoined } from "@/features/courses/joined-courses.query";
 import { LessonsList } from "@/features/lessons/LessonsList";
 import MarkdownProse from "@/features/markdown/MarkdownProse";

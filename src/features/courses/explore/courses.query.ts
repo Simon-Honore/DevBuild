@@ -1,17 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
-export type GetCoursesExploreProps = {
+export type GetAllCoursesProps = {
   userPage: number;
   itemsPerPage: number;
   userId?: string;
 };
 
-export const getCoursesExplore = async ({
+export const getAllCourses = async ({
   userPage,
   itemsPerPage,
   userId,
-}: GetCoursesExploreProps) => {
+}: GetAllCoursesProps) => {
   const where = {
     state: "PUBLISHED" as Prisma.EnumStateFilter<"Course">,
     NOT: {
@@ -47,8 +47,8 @@ export const getCoursesExplore = async ({
   return { count, data };
 };
 
-type GetCoursesExplore = Prisma.PromiseReturnType<typeof getCoursesExplore>;
-export type CoursesCardExplore = GetCoursesExplore["data"][number];
+type GetAllCourses = Prisma.PromiseReturnType<typeof getAllCourses>;
+export type CoursesCard = GetAllCourses["data"][number];
 
 export const getOneCourse = async (courseId: string) => {
   return await prisma.course.findUnique({

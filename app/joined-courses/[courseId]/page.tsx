@@ -1,7 +1,7 @@
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/button";
-import { CourseHeader } from "@/features/courses/CourseHeader";
-import { CreatorCard } from "@/features/courses/CreatorCard";
+import { CourseHeader } from "@/features/courses/explore/CourseHeader";
+import { CreatorCard } from "@/features/courses/explore/CreatorCard";
 import { getOneCourseJoined } from "@/features/courses/joined-courses.query";
 import { LessonsList } from "@/features/lessons/LessonsList";
 import { getRequiredAuthSession } from "@/lib/auth";

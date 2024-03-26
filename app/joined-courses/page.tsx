@@ -4,7 +4,7 @@ import {
   LayoutHeader,
   LayoutTitle,
 } from "@/components/layout/Layout";
-import { CourseCard } from "@/features/courses/CourseCard";
+import { CourseCard } from "@/features/courses/explore/CourseCard";
 import { getCoursesJoined } from "@/features/courses/joined-courses.query";
 import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";

@@ -18,7 +18,7 @@ type PolymorphicProps<E extends ElementType> = PropsWithChildren<
   Omit<ComponentPropsWithoutRef<E>, "as"> & PolymorphicAsProp<E>
 >;
 
-const typographyVariants = cva("", {
+export const typographyVariants = cva("", {
   variants: {
     variant: {
       h1: " scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl",

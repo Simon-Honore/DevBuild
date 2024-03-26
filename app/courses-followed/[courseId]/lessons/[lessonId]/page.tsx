@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CourseHeader } from "@/features/courses/explore/CourseHeader";
-import { getOneCourseJoined } from "@/features/courses/joined-courses.query";
-import { LessonsList } from "@/features/lessons/LessonsList";
+import { CourseHeader } from "@/features/courses/CourseHeader";
+import { LessonsList } from "@/features/courses/followed/LessonsList";
+import { getOneCourseFollowed } from "@/features/courses/followed/courses.query";
 import MarkdownProse from "@/features/markdown/MarkdownProse";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -17,7 +17,7 @@ export default async function LessonJoinedPage({
 }) {
   const session = await getRequiredAuthSession();
 
-  const course = await getOneCourseJoined({
+  const course = await getOneCourseFollowed({
     courseId: params.courseId,
     userId: session.user.id,
   });
@@ -88,7 +88,7 @@ export default async function LessonJoinedPage({
 
                 if (lesson) {
                   revalidatePath(
-                    `/joined-courses/${course.id}/lessons/${lesson.id}`
+                    `/courses-followed/${course.id}/lessons/${lesson.id}`
                   );
                 }
               }}

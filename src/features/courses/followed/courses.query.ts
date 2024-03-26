@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
-export const getCoursesJoined = async (userId: string) => {
+export const getAllCoursesFollowed = async (userId: string) => {
   return await prisma.course.findMany({
     where: {
       users: {
@@ -30,19 +30,19 @@ export const getCoursesJoined = async (userId: string) => {
   });
 };
 
-export type GetCoursesJoined = Prisma.PromiseReturnType<
-  typeof getCoursesJoined
+export type GatAllCoursesFollowed = Prisma.PromiseReturnType<
+  typeof getAllCoursesFollowed
 >[number];
 
-export type GetOneCourseJoinedProps = {
+export type GetOneCourseFollowedProps = {
   courseId: string;
   userId: string;
 };
 
-export const getOneCourseJoined = async ({
+export const getOneCourseFollowed = async ({
   courseId,
   userId,
-}: GetOneCourseJoinedProps) => {
+}: GetOneCourseFollowedProps) => {
   const course = await prisma.course.findUnique({
     where: {
       id: courseId,
@@ -122,8 +122,8 @@ export const getOneCourseJoined = async ({
   };
 };
 
-export type CourseJoined = NonNullable<
-  Prisma.PromiseReturnType<typeof getOneCourseJoined>
+export type CourseFollowed = NonNullable<
+  Prisma.PromiseReturnType<typeof getOneCourseFollowed>
 >;
 
-export type LessonInCourseJoined = CourseJoined["lessons"][0];
+export type LessonInCourseFollowed = CourseFollowed["lessons"][0];

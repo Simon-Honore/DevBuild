@@ -1,9 +1,9 @@
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/button";
-import { CourseHeader } from "@/features/courses/explore/CourseHeader";
+import { CourseHeader } from "@/features/courses/CourseHeader";
 import { CreatorCard } from "@/features/courses/explore/CreatorCard";
-import { getOneCourseJoined } from "@/features/courses/joined-courses.query";
-import { LessonsList } from "@/features/lessons/LessonsList";
+import { LessonsList } from "@/features/courses/followed/LessonsList";
+import { getOneCourseFollowed } from "@/features/courses/followed/courses.query";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { notFound } from "next/navigation";
 
@@ -14,7 +14,7 @@ export default async function JoinedCoursePage({
 }) {
   const session = await getRequiredAuthSession();
 
-  const course = await getOneCourseJoined({
+  const course = await getOneCourseFollowed({
     courseId: params.courseId,
     userId: session.user.id,
   });

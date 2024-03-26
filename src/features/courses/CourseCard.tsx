@@ -2,7 +2,7 @@ import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { capitalizeFirstChar } from "@/lib/utils";
-import { CoursesCard } from "./courses.query";
+import { CoursesCard } from "./explore/courses.query";
 
 export type CourseCardProps = {
   course: CoursesCard;

@@ -4,7 +4,7 @@ import {
   LayoutHeader,
   LayoutTitle,
 } from "@/components/layout/Layout";
-import { CourseCard } from "@/features/courses/explore/CourseCard";
+import { CourseCard } from "@/features/courses/CourseCard";
 import { getAllCourses } from "@/features/courses/explore/courses.query";
 import { PaginationNav } from "@/features/pagination/PaginationNav";
 import { getAuthSession } from "@/lib/auth";

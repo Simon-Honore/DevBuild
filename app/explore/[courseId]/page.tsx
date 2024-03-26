@@ -1,7 +1,7 @@
 import { Typography } from "@/components/ui/Typography";
 import { Button } from "@/components/ui/button";
 import { LoginButton } from "@/features/auth/LoginButton";
-import { CourseHeader } from "@/features/courses/explore/CourseHeader";
+import { CourseHeader } from "@/features/courses/CourseHeader";
 import { CreatorCard } from "@/features/courses/explore/CreatorCard";
 import { getOneCourse } from "@/features/courses/explore/courses.query";
 import { getAuthSession, getRequiredAuthSession } from "@/lib/auth";
@@ -60,7 +60,7 @@ export default async function CoursePresentationPage({
 
                   if (lesson) {
                     redirect(
-                      `/joined-courses/${courseOnUser.course.id}/lessons/${lesson.id}`
+                      `/courses-followed/${courseOnUser.course.id}/lessons/${lesson.id}`
                     );
                   }
                 }}

@@ -4,17 +4,15 @@ import {
   LayoutHeader,
   LayoutTitle,
 } from "@/components/layout/Layout";
-import { CourseCard } from "@/features/courses/explore/CourseCard";
-import { getCoursesJoined } from "@/features/courses/joined-courses.query";
+import { CourseCard } from "@/features/courses/CourseCard";
+import { getAllCoursesFollowed } from "@/features/courses/followed/courses.query";
 import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";
 
-export default async function JoinedCoursesPage() {
+export default async function CoursesFollowedPage() {
   const session = await getRequiredAuthSession();
 
-  const courses = await getCoursesJoined(session.user.id);
-
-  console.log({ courses });
+  const courses = await getAllCoursesFollowed(session.user.id);
 
   return (
     <Layout>
@@ -24,7 +22,7 @@ export default async function JoinedCoursesPage() {
 
       <LayoutContent className="flex flex-col gap-6">
         {courses.map((course) => (
-          <Link href={`/joined-courses/${course.id}`} key={course.id}>
+          <Link href={`/courses-followed/${course.id}`} key={course.id}>
             <CourseCard course={course} />
           </Link>
         ))}

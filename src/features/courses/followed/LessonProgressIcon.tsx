@@ -1,7 +1,9 @@
-import { CircleDotDashed, CircleDot, CheckCircle } from "lucide-react";
-import { LessonInCourseJoined } from "../courses/joined-courses.query";
+import { CheckCircle, CircleDot, CircleDotDashed } from "lucide-react";
+import { LessonInCourseFollowed } from "./courses.query";
 
-export const LessonProgressIcon = (progress: LessonInCourseJoined["progress"]) => {
+export const LessonProgressIcon = (
+  progress: LessonInCourseFollowed["progress"]
+) => {
   if (progress === "NOT_STARTED") {
     return <CircleDotDashed className="stroke-muted-foreground" />;
   }

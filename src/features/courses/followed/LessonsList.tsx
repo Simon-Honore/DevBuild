@@ -1,11 +1,11 @@
 import { Typography } from "@/components/ui/Typography";
 import { capitalizeFirstChar, cn } from "@/lib/utils";
 import Link from "next/link";
-import { CourseJoined } from "../courses/joined-courses.query";
 import { LessonProgressIcon } from "./LessonProgressIcon";
+import { CourseFollowed } from "./courses.query";
 
 type LessonsListProps = {
-  course: CourseJoined;
+  course: CourseFollowed;
   lessonActive?: string;
 };
 
@@ -14,7 +14,7 @@ export const LessonsList = ({ course, lessonActive }: LessonsListProps) => {
     <ul className="flex flex-col divide-y px-4">
       {course.lessons.map((lesson) => (
         <Link
-          href={`/joined-courses/${course.id}/lessons/${lesson.id}`}
+          href={`/courses-followed/${course.id}/lessons/${lesson.id}`}
           key={lesson.id}
           className="rounded hover:bg-accent"
         >

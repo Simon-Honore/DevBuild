@@ -1,13 +1,15 @@
 import { SubmitButton } from "@/components/form/SubmitButton";
 import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { buttonVariants } from "@/components/ui/button";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { DateLongFormat, capitalizeFirstChar } from "@/lib/utils";
+import { DateLongFormat, capitalizeFirstChar, cn } from "@/lib/utils";
 import { PenLine } from "lucide-react";
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { AdminLessonSortable } from "./AdminLessonSortable";
-import { getCourseLessons } from "./lessons.query";
+import { AdminLessonSortable } from "../../../src/features/courses/owner/AdminLessonSortable";
+import { getOneCourseOwner } from "../../../src/features/courses/owner/course.query";
 
 export default async function OwnerCoursePage({
   params,
@@ -18,7 +20,7 @@ export default async function OwnerCoursePage({
 }) {
   const session = await getRequiredAuthSession();
 
-  const course = await getCourseLessons({
+  const course = await getOneCourseOwner({
     courseId: params.courseId,
     userId: session.user.id,
   });
@@ -45,6 +47,16 @@ export default async function OwnerCoursePage({
               <Typography variant={"h1"} className="grow">
                 {capitalizeFirstChar(course.name ?? "")}
               </Typography>
+
+              <Link
+                href={`/owner/${course.id}/edit`}
+                className={cn(
+                  "md:mx-6",
+                  buttonVariants({ variant: "outline" })
+                )}
+              >
+                Modifier
+              </Link>
             </div>
             <Typography variant={"muted"} className="self- flex items-center">
               <PenLine className="mr-2 size-4" />

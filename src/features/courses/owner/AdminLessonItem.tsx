@@ -1,15 +1,14 @@
 import { Typography } from "@/components/ui/Typography";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { AdminLessonItemType } from "./lessons.query";
-
 import { Button } from "@/components/ui/button";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Menu } from "lucide-react";
+import Link from "next/link";
+import { LessonOwner } from "./course.query";
 
 export type LessonItemProps = {
-  lesson: AdminLessonItemType;
+  lesson: LessonOwner;
   index: number;
 };
 

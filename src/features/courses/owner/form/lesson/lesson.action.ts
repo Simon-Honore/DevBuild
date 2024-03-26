@@ -1,9 +1,9 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { z } from "zod";
-import { LessonDetailSchema } from "./form/lesson.schema";
 import { authentificatedAction } from "@/lib/safe-action";
+import { z } from "zod";
+import { LessonDetailSchema } from "./lesson.schema";
 
 const LessonActionEditDetailsSchema = z.object({
   lessonId: z.string(),

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { lessonActionEditDetails } from "../lesson.action";
+import { lessonActionEditDetails } from "./lesson.action";
 import { LESSON_STATE, LessonDetailSchema } from "./lesson.schema";
 
 export type LessonDetailFormProps = {

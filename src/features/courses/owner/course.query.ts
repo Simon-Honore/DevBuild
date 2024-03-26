@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
-export const getCourseLessons = async ({
+export const getOneCourseOwner = async ({
   courseId,
   userId,
 }: {
@@ -35,6 +35,6 @@ export const getCourseLessons = async ({
   });
 };
 
-export type AdminLessonItemType = NonNullable<
-  Prisma.PromiseReturnType<typeof getCourseLessons>
+export type LessonOwner = NonNullable<
+  Prisma.PromiseReturnType<typeof getOneCourseOwner>
 >["lessons"][number];

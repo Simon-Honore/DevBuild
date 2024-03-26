@@ -5,7 +5,7 @@ import {
   LayoutTitle,
 } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { CourseForm } from "@/features/courses/edit/CourseForm";
+import { CourseForm } from "@/features/courses/owner/form/course/CourseForm";
 import { getRequiredAuthSession } from "@/lib/auth";
 
 export default async function CoursePage() {

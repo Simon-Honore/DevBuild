@@ -21,11 +21,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AdminLessonItemSortable } from "./AdminLessonItem";
+import { LessonOwner } from "./course.query";
 import { saveLessonMove } from "./lessons.action";
-import { AdminLessonItemType } from "./lessons.query";
 
 type AdminLessonSortableProps = {
-  items: AdminLessonItemType[];
+  items: LessonOwner[];
 };
 
 export const AdminLessonSortable = ({

@@ -11,9 +11,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getRequiredAuthSession } from "@/lib/auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MdxEditor } from "../../../../../../src/features/markdown/mdxEditor/MdxEditor";
-import { LessonDetail } from "./form/LessonDetailsForm";
-import { getAdminLesson } from "./lesson.query";
+import { LessonDetail } from "../../../../../src/features/courses/owner/form/lesson/LessonDetailsForm";
+import { getOneLessonOwner } from "../../../../../src/features/courses/owner/lesson.query";
+import { MdxEditor } from "../../../../../src/features/markdown/mdxEditor/MdxEditor";
 
 export default async function CourseLessonsPage({
   params,
@@ -24,14 +24,14 @@ export default async function CourseLessonsPage({
 }) {
   const session = await getRequiredAuthSession();
 
-  const lesson = await getAdminLesson(params.lessonId, session.user.id);
+  const lesson = await getOneLessonOwner(params.lessonId, session.user.id);
 
   if (!lesson) {
     notFound();
   }
 
   return (
-    <Layout className="max-w-5xl">
+    <Layout>
       <LayoutHeader>
         <LayoutTitle>{lesson.name}</LayoutTitle>
       </LayoutHeader>

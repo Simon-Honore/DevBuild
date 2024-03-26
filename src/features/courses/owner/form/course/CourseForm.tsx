@@ -24,13 +24,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createCourseAction, editCourseAction } from "./course.action";
-import { COURSE_STATE, CourseFormSchema } from "./course.schema";
+import { CourseFormSchema } from "./course.schema";
 
 export type CourseFormProps = {
   defaultValue?: CourseFormSchema & {
     id: string;
   };
 };
+
+export const COURSE_STATE = ["DRAFT", "PUBLISHED"] as const;
 
 export const CourseForm = ({ defaultValue }: CourseFormProps) => {
   const form = useZodForm({
@@ -118,9 +120,7 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger>
-
                   <SelectValue placeholder="Sélectionner un état" />
-
                 </SelectTrigger>
               </FormControl>
               <SelectContent>

@@ -1,28 +1,26 @@
+import { SubmitButton } from "@/components/form/SubmitButton";
 import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getOwnerCourse } from "@/features/courses/edit/owner-courses.query";
 import { getRequiredAuthSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { DateLongFormat, capitalizeFirstChar } from "@/lib/utils";
 import { PenLine } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { AdminLessonSortable } from "./AdminLessonSortable";
+import { getCourseLessons } from "./lessons.query";
 
 export default async function OwnerCoursePage({
   params,
-  searchParams,
 }: {
   params: {
     courseId: string;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const page = Number(searchParams.page ?? 0);
-
   const session = await getRequiredAuthSession();
 
-  const course = await getOwnerCourse({
+  const course = await getCourseLessons({
     courseId: params.courseId,
     userId: session.user.id,
-    userPage: page,
   });
 
   if (!course) {
@@ -31,7 +29,7 @@ export default async function OwnerCoursePage({
 
   return (
     <div className="flex w-full flex-col">
-      <div className="h-fit w-full bg-secondary  ">
+      <div className="h-fit w-full bg-accent  ">
         <div className="m-auto max-w-[1500px]  p-8">
           <div className="flex flex-col max-md:gap-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -62,13 +60,44 @@ export default async function OwnerCoursePage({
 
           <div className="flex flex-col gap-2">
             <Typography variant={"h2"}>Leçons</Typography>
-            <ul className="flex flex-col divide-y px-4">
-              {course.lessons?.map((lesson) => (
-                <li key={lesson.id} className="p-2">
-                  <Typography variant={"large"}>{lesson.name}</Typography>
-                </li>
-              ))}
-            </ul>
+            <AdminLessonSortable items={course.lessons} />
+            <form>
+              <SubmitButton
+                size="sm"
+                className="w-full"
+                formAction={async () => {
+                  "use server";
+
+                  const session = await getRequiredAuthSession();
+
+                  const courseId = params.courseId;
+
+                  // Authorize the user
+                  await prisma.course.findFirstOrThrow({
+                    where: {
+                      creatorId: session.user.id,
+                      id: courseId,
+                    },
+                  });
+
+                  const lesson = await prisma.lesson.create({
+                    data: {
+                      name: "Brouillon",
+                      rank: "aaaaa",
+                      state: "DRAFT",
+                      courseId: courseId,
+                      content: "## Contenu par default",
+                    },
+                  });
+
+                  redirect(
+                    `/writing-space/my-courses/${courseId}/lessons/${lesson.id}`
+                  );
+                }}
+              >
+                Créer une leçon
+              </SubmitButton>
+            </form>
           </div>
         </div>
       </div>

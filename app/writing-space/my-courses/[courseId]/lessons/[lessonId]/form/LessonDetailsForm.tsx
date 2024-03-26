@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,22 +18,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { createCourseAction, editCourseAction } from "./course.action";
-import { COURSE_STATE, CourseFormSchema } from "./course.schema";
+import { lessonActionEditDetails } from "../lesson.action";
+import { LESSON_STATE, LessonDetailSchema } from "./lesson.schema";
 
-export type CourseFormProps = {
-  defaultValue?: CourseFormSchema & {
+export type LessonDetailFormProps = {
+  defaultValue: LessonDetailSchema & {
     id: string;
   };
 };
 
-export const CourseForm = ({ defaultValue }: CourseFormProps) => {
+export const LessonDetail = ({ defaultValue }: LessonDetailFormProps) => {
   const form = useZodForm({
-    schema: CourseFormSchema,
+    schema: LessonDetailSchema,
     defaultValues: defaultValue,
   });
   const router = useRouter();
@@ -44,44 +41,24 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
       form={form}
       className="flex flex-col gap-4"
       onSubmit={async (values) => {
-        const { data, serverError } = defaultValue?.id
-          ? await editCourseAction({
-              courseId: defaultValue.id,
-              data: values,
-            })
-          : await createCourseAction(values);
+        const { data, serverError } = await lessonActionEditDetails({
+          lessonId: defaultValue.id,
+          data: values,
+        });
 
         if (data) {
           toast.success(data.message);
-          router.push(`/writing-space/my-courses/${data.course.id}`);
+          router.push(`/writing-space/my-courses/${data.lesson.courseId}`);
           router.refresh();
           return;
         }
 
-        toast.error("Une erreur est survenue", {
+        toast.error("Some error occurred", {
           description: serverError,
         });
         return;
       }}
     >
-      <FormField
-        control={form.control}
-        name="image"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Image</FormLabel>
-            <FormControl>
-              <Input placeholder="https://googleimage.com" {...field} />
-            </FormControl>
-            <FormDescription>
-              Hébergement et utilisation d&apos;une image. Vous pouvez{" "}
-              <Link href="https://imgur.com">Imgur</Link> pour héberger votre
-              image.
-            </FormDescription>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
       <FormField
         control={form.control}
         name="name"
@@ -97,20 +74,6 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
       />
       <FormField
         control={form.control}
-        name="presentation"
-        render={({ field }) => (
-          <FormItem>
-            <FormLabel>Presentation</FormLabel>
-            <FormControl>
-              <Textarea placeholder="## Some title" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-
-      <FormField
-        control={form.control}
         name="state"
         render={({ field }) => (
           <FormItem>
@@ -118,14 +81,12 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger>
-
                   <SelectValue placeholder="Sélectionner un état" />
-
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {COURSE_STATE.map((state) => (
-                  <SelectItem value={state} className="capitalize" key={state}>
+                {LESSON_STATE.map((state) => (
+                  <SelectItem value={state} className="capitalize " key={state}>
                     {state === "DRAFT" ? "Brouillon" : "Publié"}
                   </SelectItem>
                 ))}
@@ -135,7 +96,6 @@ export const CourseForm = ({ defaultValue }: CourseFormProps) => {
           </FormItem>
         )}
       />
-
       <Button type="submit">Submit</Button>
     </Form>
   );

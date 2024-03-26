@@ -66,9 +66,14 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
                 Créer un cours
               </Typography>
             </div>
-          </div>
+            <div className="flex flex-col gap-4 border-b pb-4">
+              <Typography variant={"link"} as={Link} href={"/account"}>
+                Compte
+              </Typography>
 
-          <ThemeToggle />
+              <ThemeToggle />
+            </div>
+          </div>
 
           <LogoutButton />
         </SheetContent>

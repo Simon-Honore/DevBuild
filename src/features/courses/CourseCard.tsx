@@ -2,10 +2,10 @@ import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { capitalizeFirstChar } from "@/lib/utils";
-import { CoursesCardExplore } from "./courses.query";
+import { CoursesCard } from "./explore/courses.query";
 
 export type CourseCardProps = {
-  course: CoursesCardExplore;
+  course: CoursesCard;
 };
 
 export const CourseCard = ({ course }: CourseCardProps) => {

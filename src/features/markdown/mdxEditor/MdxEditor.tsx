@@ -1,11 +1,11 @@
 "use client";
 
 import { Badge, BadgeProps } from "@/components/ui/badge";
+import { useDebounceFn } from "@/features/hooks/useDebounceFn";
 import InitializedMDXEditor from "@/features/markdown/mdxEditor/InitializedMDXEditor";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { lessonActionEditContent } from "../../../../app/writing-space/my-courses/[courseId]/lessons/[lessonId]/lesson.action";
-import { useDebounceFn } from "@/features/hooks/useDebounceFn";
+import { lessonActionEditContent } from "../../courses/owner/form/lesson/lesson.action";
 
 export type MdxEditorProps = {
   markdown: string;

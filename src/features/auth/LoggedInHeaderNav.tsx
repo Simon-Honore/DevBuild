@@ -1,7 +1,12 @@
 import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Menu, SquarePen } from "lucide-react";
 import { Session } from "next-auth";
 import Link from "next/link";
@@ -16,7 +21,12 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
   return (
     <div className="flex items-center gap-6">
       <div className="flex items-center gap-6 max-md:hidden">
-        <CoursesNav />
+        <Typography variant={"link"} as={Link} href={"/explore"}>
+          Explorer les cours
+        </Typography>
+        <Typography variant={"link"} as={Link} href={"/courses-followed"}>
+          Cours suivis
+        </Typography>
       </div>
 
       <Sheet>
@@ -46,7 +56,17 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
           </div>
 
           <div className="flex flex-col gap-4 border-b pb-4 md:hidden">
-            <CoursesNav />
+            <SheetClose className="w-fit" asChild>
+              <Typography variant={"link"} as={Link} href={"/explore"}>
+                Explorer les cours
+              </Typography>
+            </SheetClose>
+
+            <SheetClose className="w-fit" asChild>
+              <Typography variant={"link"} as={Link} href={"/courses-followed"}>
+                Cours suivis
+              </Typography>
+            </SheetClose>
           </div>
 
           <div className="flex flex-col gap-4">
@@ -54,43 +74,36 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
               <SquarePen className="mr-2 size-4" />
               Espace rédaction
             </Typography>
+
             <div className="flex flex-col gap-4 border-b pb-4">
-              <Typography
-                variant={"link"}
-                as={Link}
-                href={"/writing-space/my-courses"}
-              >
-                Mes cours
-              </Typography>
-              <Typography variant={"link"} as={Link} href={"#"}>
-                Créer un cours
-              </Typography>
+              <SheetClose className="w-fit" asChild>
+                <Typography variant={"link"} as={Link} href={"/owner"}>
+                  Mes cours
+                </Typography>
+              </SheetClose>
+
+              <SheetClose className="w-fit" asChild>
+                <Typography variant={"link"} as={Link} href={"owner/create"}>
+                  Créer un cours
+                </Typography>
+              </SheetClose>
             </div>
             <div className="flex flex-col gap-4 border-b pb-4">
-              <Typography variant={"link"} as={Link} href={"/account"}>
-                Compte
-              </Typography>
+              <SheetClose className="w-fit" asChild>
+                <Typography variant={"link"} as={Link} href={"/account"}>
+                  Compte
+                </Typography>
+              </SheetClose>
 
               <ThemeToggle />
             </div>
           </div>
 
-          <LogoutButton />
+          <SheetClose className="w-fit" asChild>
+            <LogoutButton />
+          </SheetClose>
         </SheetContent>
       </Sheet>
     </div>
-  );
-};
-
-const CoursesNav = () => {
-  return (
-    <>
-      <Typography variant={"link"} as={Link} href={"/courses"}>
-        Explorer les cours
-      </Typography>
-      <Typography variant={"link"} as={Link} href={"/joined-courses"}>
-        Cours suivis
-      </Typography>
-    </>
   );
 };

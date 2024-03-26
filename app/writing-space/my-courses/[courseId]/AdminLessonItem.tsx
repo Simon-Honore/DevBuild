@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Typography } from "@/components/ui/Typography";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { AdminLessonItemType } from "./lessons.query";
 

@@ -10,7 +10,7 @@ export const LoggedOffHeaderNav = () => {
     <div>
       {/* On desktop */}
       <div className="flex items-center gap-6 max-md:hidden">
-        <Typography variant={"link"} as={Link} href={"/courses"}>
+        <Typography variant={"link"} as={Link} href={"/explore"}>
           Explorer les cours
         </Typography>
         <LoginButton />
@@ -25,7 +25,7 @@ export const LoggedOffHeaderNav = () => {
             </Button>
           </SheetTrigger>
           <SheetContent className="flex w-[90%] flex-col gap-6 bg-background pt-10">
-            <Typography variant={"link"} as={Link} href={"/courses"}>
+            <Typography variant={"link"} as={Link} href={"/explore"}>
               Explorer les cours
             </Typography>
             <LoginButton />

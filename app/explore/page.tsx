@@ -34,7 +34,7 @@ export default async function CoursesPage({
 
       <LayoutContent className="flex flex-col gap-6">
         {courses.data.map((course) => (
-          <Link href={`/courses/${course.id}`} key={course.id}>
+          <Link href={`/explore/${course.id}`} key={course.id}>
             <CourseCard course={course} />
           </Link>
         ))}

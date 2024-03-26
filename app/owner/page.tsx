@@ -30,7 +30,7 @@ export default async function CoursesOwnerPage() {
           <LayoutTitle className="uppercase">mes cours</LayoutTitle>
         </LayoutHeader>
         <LayoutActions>
-          <Link href="/writing-space/create" className={buttonVariants()}>
+          <Link href="/owner/create" className={buttonVariants()}>
             Créer un cours
           </Link>
         </LayoutActions>
@@ -47,13 +47,13 @@ export default async function CoursesOwnerPage() {
         <LayoutTitle className="uppercase">mes cours</LayoutTitle>
       </LayoutHeader>
       <LayoutActions>
-        <Link href="/writing-space/create" className={buttonVariants()}>
+        <Link href="/owner/create" className={buttonVariants()}>
           Créer un cours
         </Link>
       </LayoutActions>
       <LayoutContent>
         {courses.map((course) => (
-          <Link key={course.id} href={`/writing-space/my-courses/${course.id}`}>
+          <Link key={course.id} href={`/owner/${course.id}`}>
             <Card>
               <CardContent className="flex items-center gap-6 md:items-stretch">
                 <Avatar className="my-auto size-16 rounded-md md:size-24">

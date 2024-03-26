@@ -6,11 +6,12 @@ import {
   LayoutHeader,
   LayoutTitle,
 } from "@/components/layout/Layout";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getRequiredAuthSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { LessonDetail } from "../../../../../src/features/courses/owner/form/lesson/LessonDetailsForm";
 import { getOneLessonOwner } from "../../../../../src/features/courses/owner/lesson.query";
 import { MdxEditor } from "../../../../../src/features/markdown/mdxEditor/MdxEditor";
@@ -41,7 +42,7 @@ export default async function CourseLessonsPage({
             size: "sm",
             variant: "secondary",
           })}
-          href={`/writing-space/my-courses/${lesson.courseId}`}
+          href={`/owner/${lesson.courseId}`}
         >
           Retour
         </Link>
@@ -51,8 +52,32 @@ export default async function CourseLessonsPage({
           <CardHeader>
             <CardTitle>Details</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-2">
+          <CardContent className="flex flex-col gap-6">
             <LessonDetail defaultValue={lesson} />
+            <form className="w-full">
+              <Button
+                className="w-full"
+                formAction={async () => {
+                  "use server";
+
+                  const session = await getRequiredAuthSession();
+
+                  await prisma.lesson.delete({
+                    where: {
+                      id: lesson.id,
+                      course: {
+                        creatorId: session.user.id,
+                      },
+                    },
+                  });
+
+                  redirect(`/owner/${lesson.courseId}`);
+                }}
+                variant={"destructive"}
+              >
+                Supprimer la leçon
+              </Button>
+            </form>
           </CardContent>
         </Card>
         <Card className="max-w-full flex-[3] overflow-auto">

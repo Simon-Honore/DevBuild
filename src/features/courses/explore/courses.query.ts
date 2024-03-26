@@ -69,6 +69,11 @@ export const getOneCourse = async (courseId: string) => {
           image: true,
         },
       },
+      users: {
+        select: {
+          id: true,
+        },
+      },
       lessons: {
         where: {
           state: "PUBLISHED",

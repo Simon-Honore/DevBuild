@@ -24,7 +24,7 @@ export const lessonActionEditDetails = authentificatedAction(
     });
 
     return {
-      message: "Lesson updated successfully",
+      message: "La leçon à été mise à jour avec succès",
       lesson,
     };
   }
@@ -51,7 +51,7 @@ export const lessonActionEditContent = authentificatedAction(
     });
 
     return {
-      message: "Lesson updated successfully",
+      message: "La leçon à été mise à jour avec succès",
       lesson,
     };
   }

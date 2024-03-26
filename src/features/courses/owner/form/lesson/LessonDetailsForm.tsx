@@ -96,7 +96,7 @@ export const LessonDetail = ({ defaultValue }: LessonDetailFormProps) => {
           </FormItem>
         )}
       />
-      <Button type="submit">Submit</Button>
+      <Button type="submit">Valider</Button>
     </Form>
   );
 };

@@ -1,5 +1,4 @@
 import { Typography } from "@/components/ui/Typography";
-import { Button } from "@/components/ui/button";
 import { CourseHeader } from "@/features/courses/CourseHeader";
 import { CreatorCard } from "@/features/courses/explore/CreatorCard";
 import { LessonsList } from "@/features/courses/followed/LessonsList";
@@ -25,11 +24,7 @@ export default async function JoinedCoursePage({
 
   return (
     <div className="flex w-full flex-col">
-      <CourseHeader course={course}>
-        <div className="md:px-10">
-          <Button>Continuer</Button>
-        </div>
-      </CourseHeader>
+      <CourseHeader course={course} />
 
       <div className="container flex gap-16 py-10 max-md:flex-col md:px-20">
         <div className="flex grow flex-col gap-6">

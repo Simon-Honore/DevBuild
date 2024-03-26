@@ -22,6 +22,11 @@ export default async function CoursePresentationPage({
     notFound();
   }
 
+  const isUserFollowed = Boolean(
+    course.users.find((user) => user.id === session?.user.id)
+  );
+  console.log({ isUserFollowed });
+
   return (
     <div className="flex w-full flex-col">
       <CourseHeader course={course}>
@@ -33,6 +38,11 @@ export default async function CoursePresentationPage({
                   "use server";
 
                   const session = await getRequiredAuthSession();
+
+                  if (!isUserFollowed) {
+                    redirect(`/courses-followed/${params.courseId}`);
+                  }
+
                   const courseOnUser = await prisma.courseOnUser.create({
                     data: {
                       courseId: params.courseId,

@@ -25,7 +25,6 @@ export default async function CoursePresentationPage({
   const isUserFollowed = Boolean(
     course.users.find((user) => user.id === session?.user.id)
   );
-  console.log({ isUserFollowed });
 
   return (
     <div className="flex w-full flex-col">

@@ -1,6 +1,7 @@
 import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { capitalizeFirstChar } from "@/lib/utils";
 import { CoursesCard } from "./explore/courses.query";
 
@@ -13,10 +14,10 @@ export const CourseCard = ({ course }: CourseCardProps) => {
     <Card>
       <CardContent className="flex items-stretch gap-6">
         <Avatar className="my-auto size-24 rounded-md md:size-36">
-          <AvatarFallback>{course.name[0]}</AvatarFallback>
-          {course.image ? (
-            <AvatarImage src={course.image} alt="image du cours" />
-          ) : null}
+          <AvatarFallback>
+            <Skeleton className="size-full" />
+          </AvatarFallback>
+          <AvatarImage src={course.image} alt="image du cours" />
         </Avatar>
         <div className="flex grow flex-col gap-2 py-2">
           <Typography variant={"h2"}>

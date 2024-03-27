@@ -82,7 +82,7 @@ export default async function CourseLessonsPage({
         </Card>
         <Card className="max-w-full flex-[3] overflow-auto">
           <CardHeader>
-            <CardTitle>Content</CardTitle>
+            <CardTitle>Contenu</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-2">
             <MdxEditor lessonId={lesson.id} markdown={lesson.content} />

@@ -24,13 +24,13 @@ export default function RootLayout({
     <html lang="en" className="h-full" suppressHydrationWarning>
       <body
         className={cn(
-          "bg-background antialiased flex flex-col min-h-screen",
+          "bg-background antialiased flex flex-col min-h-screen relative",
           inter.className
         )}
       >
         <Providers>
           <Header />
-          <main className="flex-1  pb-10">{children}</main>
+          <main className="flex-1 pb-10 pt-16">{children}</main>
           <Footer />
           <TailwindIndicator />
         </Providers>

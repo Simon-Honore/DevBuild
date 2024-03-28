@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CourseForm } from "@/features/courses/owner/form/course/CourseForm";
 import { getRequiredAuthSession } from "@/lib/auth";
 
-export default async function CoursePage() {
+export default async function CourseCreatePage() {
   await getRequiredAuthSession();
 
   return (

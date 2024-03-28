@@ -83,7 +83,7 @@ export const LoggedInHeaderNav = ({ user }: AuthHeaderProps) => {
               </SheetClose>
 
               <SheetClose className="w-fit" asChild>
-                <Typography variant={"link"} as={Link} href={"owner/create"}>
+                <Typography variant={"link"} as={Link} href={"/owner/create"}>
                   Créer un cours
                 </Typography>
               </SheetClose>

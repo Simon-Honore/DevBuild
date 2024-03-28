@@ -22,6 +22,10 @@ export default async function CoursePresentationPage({
     notFound();
   }
 
+  const isUserFollowed = Boolean(
+    course.users.find((user) => user.id === session?.user.id)
+  );
+
   return (
     <div className="flex w-full flex-col">
       <CourseHeader course={course}>
@@ -33,10 +37,6 @@ export default async function CoursePresentationPage({
                   "use server";
 
                   const session = await getRequiredAuthSession();
-
-                  const isUserFollowed = Boolean(
-                    course.users.find((user) => user.id === session?.user.id)
-                  );
 
                   if (!isUserFollowed) {
                     redirect(`/courses-followed/${params.courseId}`);

@@ -18,6 +18,7 @@ const main = async () => {
               name: faker.lorem.words(3),
               createdAt: faker.date.past(),
               presentation: faker.lorem.paragraph(),
+              image: faker.image.url(),
               lessons: {
                 createMany: {
                   data: [
@@ -85,7 +86,7 @@ const main = async () => {
     });
   }
 
-  // add an image and change state to PUBLISHED at 8 course
+  // change state to PUBLISHED at 8 course
   const random8Courses = faker.helpers.arrayElements(courses, 8);
 
   for (const course of random8Courses) {
@@ -94,7 +95,6 @@ const main = async () => {
         id: course.id,
       },
       data: {
-        image: faker.image.url(),
         state: "PUBLISHED",
       },
     });

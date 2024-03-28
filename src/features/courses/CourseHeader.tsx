@@ -1,6 +1,6 @@
 import { Typography } from "@/components/ui/Typography";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getRequiredAuthSession } from "@/lib/auth";
+import { getAuthSession } from "@/lib/auth";
 import { DateLongFormat, capitalizeFirstChar } from "@/lib/utils";
 import { PenLine } from "lucide-react";
 import { PropsWithChildren } from "react";
@@ -17,7 +17,7 @@ export const CourseHeader = async ({
   course,
   children,
 }: PropsWithChildren & CourseHeaderProps) => {
-  const session = await getRequiredAuthSession();
+  const session = await getAuthSession();
 
   return (
     <div className="h-fit w-full bg-secondary  ">
